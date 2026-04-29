@@ -1,25 +1,41 @@
 package aplication;
 
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        File file = new File("C:\\Users\\Barbara\\OneDrive\\Área de Trabalho\\Barbara\\temp.txt");
-        Scanner sc = null;
+        String path = "\"C:\\\\Users\\\\Barbara\\\\OneDrive\\\\Área de Trabalho\\\\Barbara\\\\temp.txt\"";
+        FileReader fr = null;
+        BufferedReader br = null;
         
+        //Verificando se é possível abrir o arquivo
         try {
-            sc = new Scanner(file);
-            while (sc.hasNextLine()) {
-                System.out.println(sc.nextLine());
+            fr = new FileReader(path);
+            br = new BufferedReader(fr);
+            
+            String line = br.readLine();
+
+            while(line != null){
+                System.out.println(line);
+                line = br.readLine();
             }
         } catch (IOException e) {
-            System.out.println("Erro " + e.getMessage());
-        }finally{
-           if(sc != null){sc.close();}
+            System.out.println("Error: " + e.getMessage());
+        }
+        //Antes de fechar os arquivo, deve verificar se estão abertos para não gerrar nenhum erro.
+        finally{
+            try{
+                if(fr != null){
+                    fr.close();
+                }
+                if(br != null){
+                    br.close();
+                }
+            }catch(IOException e){
+                System.out.println(e.getStackTrace());
+            }
         }
 
-    }
-
-}
+    }   
