@@ -1,8 +1,8 @@
 package services;
 
-public class BrazilTaxService {
+public class BrazilTaxService implements TaxService{
 
-      public double tax(Double amaunt){
+      public double tax (double amaunt){
         if(amaunt > 100){
             return (amaunt * 0.15);
         }else{
