@@ -14,12 +14,15 @@ public class ContractService {
 
     public void processContract(Contract contract, int month){
         double amount = contract.getTotalValue() / month;
-
         for(int i = 1; i <= month; i++){
             double fees = paymentService.simpleInterest(amount, i);
-            double value = paymentService.paymantTax(fees);
+            double value = amount + fees;
+            double tax = paymentService.paymantTax(value);
+            value += tax;
             LocalDate date = contract.getDate().plusMonths(i);
             contract.addInstallments(new Installments(value, date));
         }
     }
+
+    
 }

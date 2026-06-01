@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 import entities.Contract;
 import service.ContractService;
-import service.OnlinePaymentService;
 import service.Paypal;
 
 public class Applicationn {
@@ -15,6 +14,7 @@ public class Applicationn {
         Scanner scanner = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         Contract contract = null;
+        ContractService cs = null;
 
         try{
             System.out.println("Informe os dados do contrato: ");
@@ -31,16 +31,17 @@ public class Applicationn {
             scanner.nextLine();
 
             contract = new Contract(id, date, amount);
-            ContractService cs = new ContractService(new Paypal()); 
+            cs = new ContractService(new Paypal()); 
             cs.processContract(contract, mounth);
-            
-            
+          
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
+        }finally{
+            scanner.close();
         }
-       
 
-
+        System.out.println("Parcelas: ");
+        System.out.println(contract.getListInstallments());
     }
         
     

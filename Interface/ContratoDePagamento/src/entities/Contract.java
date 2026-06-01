@@ -33,6 +33,15 @@ public class Contract {
     public List<Installments> getInstallments() {
         return installments;
     }
+
+    public String getListInstallments() {
+        StringBuilder sb = new StringBuilder();
+        for(Installments i: installments){
+            sb.append(i.toString()).append("\n");
+        }
+        return sb.toString();
+    }
+    
     public void setDate(LocalDate date) {
         this.date = date;
     }
