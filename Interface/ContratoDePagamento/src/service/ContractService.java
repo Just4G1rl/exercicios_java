@@ -16,9 +16,8 @@ public class ContractService {
         double amount = contract.getTotalValue() / month;
         for(int i = 1; i <= month; i++){
             double fees = paymentService.simpleInterest(amount, i);
-            double value = amount + fees;
-            double tax = paymentService.paymantTax(value);
-            value += tax;
+            double tax = paymentService.paymantTax(amount + fees);
+            Double value = amount + fees + tax;
             LocalDate date = contract.getDate().plusMonths(i);
             contract.addInstallments(new Installments(value, date));
         }

@@ -9,7 +9,7 @@ public class Contract {
     private LocalDate date;
     private double totalValue;
 
-    private List<Installments> installments;
+    private List<Installments> installments = new ArrayList<>();
 
     public Contract (){
 
@@ -18,7 +18,6 @@ public class Contract {
         this.id = id;
         this.date = date;
         this.totalValue = totalValue;
-        this.installments = new ArrayList<>();
     }
 
     public LocalDate getDate() {
