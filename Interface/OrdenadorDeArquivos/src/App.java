@@ -19,9 +19,7 @@ public class App {
             String line = buffer.readLine();
             while (line != null) {
                 String[] dados = line.split(",");
-                String name = dados[0];
-                Double salary = Double.parseDouble(dados[1]);
-                workerList.add(new Worker(name, salary));
+                workerList.add(new Worker(dados[0], Double.parseDouble(dados[1])));
                 line = buffer.readLine();
             }
         }catch(IOException e){
@@ -29,7 +27,7 @@ public class App {
         }
 
         //Realizando a comparação entre os nomes atravez de espressão lambda
-        workerList.sort(Comparator.comparing(Worker::getName));
+        Collections.sort(workerList);
 
         for(Worker worker : workerList){
             System.out.println(worker.toString());

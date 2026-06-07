@@ -1,6 +1,6 @@
 package entities;
 
-public class Worker {
+public class Worker implements Comparable <Worker>{
     private String name;
     private Double salary;
 
@@ -31,5 +31,11 @@ public class Worker {
     @Override
     public String toString() {
         return name + " - R$" + String.format("%.2f",salary);
+    }
+
+    @Override
+    public int compareTo(Worker o) {
+        // TODO Auto-generated method stub
+        return name.compareTo(o.getName());
     }
 }
