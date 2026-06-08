@@ -1,21 +1,19 @@
 package service;
 
-public class BrazilTax {
+public class BrazilTaxService implements TaxService{
     private double interestRate;
 
-    public BrazilTax(){
+    public BrazilTaxService(){
 
     }
-    public BrazilTax(double interestRate){
+    public BrazilTaxService(double interestRate){
         this.interestRate = interestRate;
     }
+    @Override
     public double getInterestRate() {
         return interestRate;
     }
     public void setInterestRate(double interestRate) {
         this.interestRate = interestRate;
-    }
-    public double tax (Double amount, int month){
-        return amount * Math.pow((1 + interestRate),month);
     }
 }

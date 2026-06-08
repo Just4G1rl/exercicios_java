@@ -1,11 +1,14 @@
 import java.util.Scanner;
 
-import service.BrazilTax;
+import service.BrazilTaxService;
+import service.TaxService;
+import service.USATaxService;
 
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
-        BrazilTax tax = new BrazilTax(0.02);
+        //Informar o valor da taixa entre 1.00 e 0.00.
+        TaxService tax = new USATaxService(0.01);
 
         System.out.print("Amount:");
         double amount = scanner.nextDouble();
