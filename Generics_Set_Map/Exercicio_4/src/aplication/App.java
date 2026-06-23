@@ -20,17 +20,18 @@ public class App {
         String path = scanner.nextLine();
 
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-            String[] line = br.readLine().split(" ");
-    
-            while (line != null) {
-            access.add(new LogAccess(line[0],Instant.parse(line[1]))); 
-            line = br.readLine().split(" ");   
+            String line = br.readLine();
+            while(line != null) {
+                String [] data = line.split(" ");
+                access.add(new LogAccess(data[0], Instant.parse(data[1])));
+                line = br.readLine();
             }
         } catch (FileNotFoundException e) {
             System.out.println("Erro: Aquivo inexixtente!");
         } catch(IOException e){
             System.out.println("Erro: "+ e.getStackTrace());
         }
+
         System.out.println("Total users: ");
         System.out.println(access.size());
 
